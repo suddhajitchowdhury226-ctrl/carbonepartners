@@ -1,5 +1,50 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { CheckCircle2 } from 'lucide-react';
+
+const AutoCounter = ({ endValue, duration = 2000, suffix = '' }) => {
+  const [count, setCount] = useState(0);
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const countRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const [entry] = entries;
+        if (entry.isIntersecting && !hasAnimated) {
+          let startTimestamp = null;
+          const step = (timestamp) => {
+            if (!startTimestamp) startTimestamp = timestamp;
+            const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+            // easeOutQuart for smooth deceleration
+            const easeProgress = 1 - Math.pow(1 - progress, 4);
+            setCount(Math.floor(easeProgress * endValue));
+            if (progress < 1) {
+              window.requestAnimationFrame(step);
+            } else {
+              setCount(endValue);
+              setHasAnimated(true);
+            }
+          };
+          window.requestAnimationFrame(step);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const currentRef = countRef.current;
+    if (currentRef) {
+      observer.observe(currentRef);
+    }
+
+    return () => {
+      if (currentRef) {
+        observer.unobserve(currentRef);
+      }
+    };
+  }, [endValue, duration, hasAnimated]);
+
+  return <span ref={countRef}>{count}{suffix}</span>;
+};
 
 const credentials = [
   'IPA Practice',
@@ -57,17 +102,19 @@ const AboutSection = () => {
               gap: 24, marginTop: 8,
             }}>
               {[
-                { num: '15+', label: 'Years in Business' },
-                { num: '500+', label: 'Satisfied Clients' },
-                { num: '6', label: 'Service Pillars' },
-                { num: '100%', label: 'Client Focused' },
+                { end: 15, suffix: '+', label: 'Years in Business' },
+                { end: 500, suffix: '+', label: 'Satisfied Clients' },
+                { end: 6, suffix: '', label: 'Service Pillars' },
+                { end: 100, suffix: '%', label: 'Client Focused' },
               ].map((stat, i) => (
                 <div key={i} style={{
                   background: '#080f1e',
                   padding: '24px 20px',
                   borderLeft: '3px solid #c8a96e',
                 }}>
-                  <div style={{ fontSize: 32, fontWeight: 900, color: '#fff', lineHeight: 1 }}>{stat.num}</div>
+                  <div style={{ fontSize: 32, fontWeight: 900, color: '#fff', lineHeight: 1 }}>
+                    <AutoCounter endValue={stat.end} suffix={stat.suffix} />
+                  </div>
                   <div style={{ fontSize: 11, fontWeight: 600, color: 'rgba(255,255,255,0.5)', letterSpacing: 1.2, textTransform: 'uppercase', marginTop: 6 }}>{stat.label}</div>
                 </div>
               ))}
