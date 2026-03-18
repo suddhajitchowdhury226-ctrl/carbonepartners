@@ -6,6 +6,7 @@ import AboutSection from './components/AboutSection';
 import ServicesPillar from './components/ServicesPillar';
 import FeaturesBanner from './components/FeaturesBanner';
 import Testimonials from './components/Testimonials';
+import TeamSection from './components/TeamSection';
 import ContactSection from './components/ContactSection';
 import ClientsSlider from './components/ClientsSlider';
 import './index.css';
@@ -203,9 +204,10 @@ function App() {
       <ServicesPillar />
       <div className="reveal"><FeaturesBanner /></div>
       <div className="reveal reveal-delay-1"><Testimonials /></div>
+      <div className="reveal reveal-delay-1"><TeamSection /></div>
       <div className="reveal reveal-delay-1"><ContactSection /></div>
       <ClientsSlider />
-      <div className="reveal"><Footer /></div>
+      <Footer />
     </div>
   );
 }
