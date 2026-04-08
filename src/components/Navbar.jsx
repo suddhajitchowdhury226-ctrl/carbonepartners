@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Phone, Menu, X, ChevronDown, ChevronRight, Mail, MapPin, Facebook, Instagram, Linkedin } from 'lucide-react';
+import { Phone, Menu, X, ChevronDown, ChevronRight, Mail, MapPin, Facebook, Linkedin } from 'lucide-react';
 
 const SVG_X = () => (
   <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
@@ -25,27 +25,30 @@ const NAV_ITEMS = [
       {
         label: 'Accountants',
         link: '#accountants',
+        icon: '/Financial-image/accountants.png',
         subDropdown: [
-          { label: 'Accounting & Comp.', link: '#acc-comp' },
-          { label: 'Tax Advis.', link: '#tax' },
-          { label: 'Biz Conslt', link: '#biz-consult' },
-          { label: 'SMSF', link: '#smsf-acc' },
-          { label: 'Property Inv.', link: '#prop-inv' },
-          { label: 'Corp. Sec.', link: '#corp-sec' },
+          { label: 'Accounting & Compliance', link: '#accounting-compliance' },
+          { label: 'Tax Advisory', link: '#tax-advisory' },
+          { label: 'Business Consulting', link: '#business-consulting' },
+          { label: 'SMSF', link: '#smsf' },
+          { label: 'Property Investment', link: '#property-investment' },
+          { label: 'Corporate Secretarial', link: '#corporate-secretarial' },
         ]
       },
       {
         label: 'Wealth',
         link: '#wealth',
+        icon: '/Financial-image/wealth.png',
         subDropdown: [
-          { label: 'Planning', link: '#planning' },
-          { label: 'Protection', link: '#protection' },
-          { label: 'Retirement', link: '#retirement' },
+          { label: 'Planning', link: '#wealth-planning' },
+          { label: 'Protection', link: '#wealth-protection' },
+          { label: 'Retirement', link: '#wealth-retirement' },
         ]
       },
       {
         label: 'Superannuation',
         link: '#superannuation',
+        icon: '/Financial-image/super.png',
         subDropdown: [
           { label: 'SMSF Intro', link: '#smsf-intro' },
           { label: 'SMSF Strategy', link: '#smsf-strategy' },
@@ -56,6 +59,7 @@ const NAV_ITEMS = [
       {
         label: 'Finance',
         link: '#finance',
+        icon: '/Financial-image/Finance.png',
         subDropdown: [
           { label: 'Home Loans', link: '#home-loans' },
           { label: 'Commercial Loans', link: '#commercial-loans' },
@@ -66,6 +70,7 @@ const NAV_ITEMS = [
       {
         label: 'Insurance',
         link: '#insurance',
+        icon: '/Financial-image/insurance.png',
         subDropdown: [
           { label: 'Assets & Revenue', link: '#assets-revenue' },
           { label: 'Liability', link: '#liability' },
@@ -75,6 +80,7 @@ const NAV_ITEMS = [
       {
         label: 'Bookkeeping & Mgmt',
         link: '#bookkeeping',
+        icon: '/Financial-image/book.png',
         subDropdown: [
           { label: 'Bookkeeping', link: '#bookkeeping-srv' },
           { label: 'Payroll Management', link: '#payroll' },
@@ -100,7 +106,7 @@ const NAV_ITEMS = [
       { label: 'Useful Links', link: '#useful-links' },
     ]
   },
-  { label: 'Blog', link: '#blog' },
+  { label: 'Blog', link: 'https://www.facebook.com/carbonepartners/' },
   { label: 'Contact Us', link: '#contact' },
 ];
 
@@ -126,7 +132,7 @@ const Navbar = () => {
       transition: 'all 0.3s ease',
       borderBottom: '1px solid rgba(0,0,0,0.08)',
     }}>
-      
+
       {/* Top Contact Bar (hidden on scroll) */}
       <div style={{
         display: scrolled ? 'none' : 'flex',
@@ -136,16 +142,41 @@ const Navbar = () => {
         borderBottom: '1px solid rgba(0,0,0,0.06)',
         background: '#ffffff',
       }} className="nav-topbar">
-        {/* Social Block */}
-        <div style={{
-          display: 'flex', alignItems: 'center', gap: 18,
-          background: '#1e3a8a', padding: '10px 24px',
-          color: '#ffffff',
-        }}>
-          <a href="#" style={{ color: '#fff', display: 'flex' }}><Facebook size={14} /></a>
-          <a href="#" style={{ color: '#fff', display: 'flex' }}><Instagram size={14} /></a>
-          <a href="#" style={{ color: '#fff', display: 'flex' }}><SVG_X /></a>
-          <a href="#" style={{ color: '#fff', display: 'flex' }}><Linkedin size={14} /></a>
+        {/* Left group: social icons + SmartAR button */}
+        <div style={{ display: 'flex', alignItems: 'center' }}>
+          {/* Social Block */}
+          <div style={{
+            display: 'flex', alignItems: 'center', gap: 18,
+            background: '#1e3a8a', padding: '10px 24px',
+            color: '#ffffff',
+          }}>
+            <a href="https://www.facebook.com/carbonepartners/" target="_blank" rel="noopener noreferrer" style={{ color: '#fff', display: 'flex' }}><Facebook size={14} /></a>
+            <a href="#" style={{ color: '#fff', display: 'flex' }}><Linkedin size={14} /></a>
+          </div>
+
+          {/* SmartAR pill button — transparent background */}
+          <div style={{ padding: '0 16px' }}>
+            <a
+              href="https://secure.smartpaymentpage.com/pay.aspx?client=2e5c76bf-82b9-4798-a315-858564eae3ae"
+              target="_blank" rel="noopener noreferrer"
+              style={{
+                display: 'inline-flex', alignItems: 'center',
+                background: '#c8a96e',
+                color: '#080f1e',
+                fontSize: 10, fontWeight: 700,
+                letterSpacing: 0.8,
+                padding: '4px 13px',
+                borderRadius: 999,
+                textDecoration: 'none',
+                whiteSpace: 'nowrap',
+                transition: 'background 0.2s ease',
+              }}
+              onMouseEnter={e => e.currentTarget.style.background = '#b8924e'}
+              onMouseLeave={e => e.currentTarget.style.background = '#c8a96e'}
+            >
+              Pay Monthly by SmartAR
+            </a>
+          </div>
         </div>
 
         {/* Info Block */}
@@ -171,7 +202,7 @@ const Navbar = () => {
         height: 100,
         padding: '0 40px',
         maxWidth: '100%',
-        position: 'relative',
+        gap: 16,
       }}>
         {/* Logo – left */}
         <a href="#" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', flexShrink: 0, zIndex: 2 }}>
@@ -189,16 +220,19 @@ const Navbar = () => {
           />
         </a>
 
-        {/* Nav Links – absolutely centered */}
+        {/* Nav Links – flex centered */}
         <ul className="nav-desktop-links" style={{
-          position: 'absolute',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          zIndex: 1,
+          flex: 1,
+          justifyContent: 'center',
         }}>
           {NAV_ITEMS.map(item => (
             <li key={item.label} className="nav-item">
-              <a href={item.link} className="nav-link">
+              <a 
+                href={item.link} 
+                className="nav-link"
+                target={item.link.startsWith('http') ? '_blank' : '_self'}
+                rel={item.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+              >
                 {item.label}
                 {item.dropdown && <ChevronDown size={14} />}
               </a>
@@ -207,6 +241,13 @@ const Navbar = () => {
                   {item.dropdown.map(subItem => (
                     <li key={subItem.label} className="dropdown-item">
                       <a href={subItem.link} className="dropdown-link" style={subItem.subDropdown ? { paddingRight: '24px' } : {}}>
+                        {subItem.icon && (
+                          <img
+                            src={subItem.icon}
+                            alt={subItem.label}
+                            style={{ width: 28, height: 28, objectFit: 'contain', marginRight: 10, flexShrink: 0 }}
+                          />
+                        )}
                         {subItem.label}
                         {subItem.subDropdown && <ChevronRight size={14} />}
                       </a>
@@ -230,7 +271,7 @@ const Navbar = () => {
         </ul>
 
         {/* Right Actions */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 24, flexShrink: 0, zIndex: 2 }} className="nav-desktop-actions">
+        <div style={{ display: 'flex', alignItems: 'center', gap: 24, flexShrink: 0 }} className="nav-desktop-actions">
           <a href="tel:0894093644" style={{
             display: 'flex', alignItems: 'center', gap: 8,
             color: '#1e3a5f', fontSize: 12, fontWeight: 600, letterSpacing: 0.5, textDecoration: 'none', whiteSpace: 'nowrap',
@@ -239,7 +280,7 @@ const Navbar = () => {
             <span className="phone-text">(08) 9409 3644</span>
           </a>
           <a href="#contact" className="btn-red" style={{ fontSize: 11, letterSpacing: 1.2, padding: '11px 22px', whiteSpace: 'nowrap' }}>
-            Book Consult
+            Book Consultation
           </a>
         </div>
 
@@ -268,7 +309,9 @@ const Navbar = () => {
               <li key={item.label}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                   <a href={item.link} onClick={() => !item.dropdown && setMenuOpen(false)}
-                     style={{ fontSize: 13, fontWeight: 600, letterSpacing: 1.5, textTransform: 'uppercase', color: '#1e3a5f', textDecoration: 'none' }}>
+                    target={item.link.startsWith('http') ? '_blank' : '_self'}
+                    rel={item.link.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    style={{ fontSize: 13, fontWeight: 600, letterSpacing: 1.5, textTransform: 'uppercase', color: '#1e3a5f', textDecoration: 'none' }}>
                     {item.label}
                   </a>
                   {item.dropdown && (
@@ -278,35 +321,35 @@ const Navbar = () => {
                   )}
                 </div>
                 {item.dropdown && mobileExpanded === item.label && (
-                   <ul style={{ paddingLeft: 16, marginTop: 12, display: 'flex', flexDirection: 'column', gap: 12, borderLeft: '1px solid rgba(59,130,246,0.3)', listStyle: 'none' }}>
-                     {item.dropdown.map(subItem => (
-                       <li key={subItem.label}>
-                         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                           <a href={subItem.link} onClick={() => !subItem.subDropdown && setMenuOpen(false)}
-                              style={{ fontSize: 13, color: '#2563eb', textDecoration: 'none' }}>
-                             {subItem.label}
-                           </a>
-                           {subItem.subDropdown && (
-                             <button onClick={() => setMobileExpandedSub(mobileExpandedSub === subItem.label ? null : subItem.label)} style={{ background: 'none', border: 'none', color: '#1e3a5f', padding: 4, cursor: 'pointer' }}>
-                               <ChevronDown size={14} style={{ transform: mobileExpandedSub === subItem.label ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }} />
-                             </button>
-                           )}
-                         </div>
-                         {subItem.subDropdown && mobileExpandedSub === subItem.label && (
-                           <ul style={{ paddingLeft: 16, marginTop: 8, display: 'flex', flexDirection: 'column', gap: 10, borderLeft: '1px solid rgba(59,130,246,0.2)', listStyle: 'none' }}>
-                             {subItem.subDropdown.map(subSubItem => (
-                               <li key={subSubItem.label}>
-                                 <a href={subSubItem.link} onClick={() => setMenuOpen(false)}
-                                    style={{ fontSize: 12, color: '#3b82f6', textDecoration: 'none' }}>
-                                   {subSubItem.label}
-                                 </a>
-                               </li>
-                             ))}
-                           </ul>
-                         )}
-                       </li>
-                     ))}
-                   </ul>
+                  <ul style={{ paddingLeft: 16, marginTop: 12, display: 'flex', flexDirection: 'column', gap: 12, borderLeft: '1px solid rgba(59,130,246,0.3)', listStyle: 'none' }}>
+                    {item.dropdown.map(subItem => (
+                      <li key={subItem.label}>
+                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                          <a href={subItem.link} onClick={() => !subItem.subDropdown && setMenuOpen(false)}
+                            style={{ fontSize: 13, color: '#2563eb', textDecoration: 'none' }}>
+                            {subItem.label}
+                          </a>
+                          {subItem.subDropdown && (
+                            <button onClick={() => setMobileExpandedSub(mobileExpandedSub === subItem.label ? null : subItem.label)} style={{ background: 'none', border: 'none', color: '#1e3a5f', padding: 4, cursor: 'pointer' }}>
+                              <ChevronDown size={14} style={{ transform: mobileExpandedSub === subItem.label ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }} />
+                            </button>
+                          )}
+                        </div>
+                        {subItem.subDropdown && mobileExpandedSub === subItem.label && (
+                          <ul style={{ paddingLeft: 16, marginTop: 8, display: 'flex', flexDirection: 'column', gap: 10, borderLeft: '1px solid rgba(59,130,246,0.2)', listStyle: 'none' }}>
+                            {subItem.subDropdown.map(subSubItem => (
+                              <li key={subSubItem.label}>
+                                <a href={subSubItem.link} onClick={() => setMenuOpen(false)}
+                                  style={{ fontSize: 12, color: '#3b82f6', textDecoration: 'none' }}>
+                                  {subSubItem.label}
+                                </a>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
                 )}
               </li>
             ))}
@@ -316,7 +359,7 @@ const Navbar = () => {
               (08) 9409 3644
             </a>
             <a href="#contact" className="btn-red" style={{ textAlign: 'center', fontSize: 12, textDecoration: 'none' }}>
-              Book Free Consult
+              Book Consultation
             </a>
           </div>
         </div>

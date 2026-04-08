@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import ValuesStrip from './components/ValuesStrip';
@@ -9,6 +9,38 @@ import Testimonials from './components/Testimonials';
 import TeamSection from './components/TeamSection';
 import ContactSection from './components/ContactSection';
 import ClientsSlider from './components/ClientsSlider';
+import AccountingCompliancePage from './components/AccountingCompliancePage';
+import TaxAdvisoryPage from './components/TaxAdvisoryPage';
+import BusinessConsultingPage from './components/BusinessConsultingPage';
+import SMSFPage from './components/SMSFPage';
+import PropertyInvestmentPage from './components/PropertyInvestmentPage';
+import CorporateSecretarialPage from './components/CorporateSecretarialPage';
+import WealthPlanningPage from './components/WealthPlanningPage';
+import WealthProtectionPage from './components/WealthProtectionPage';
+import WealthRetirementPage from './components/WealthRetirementPage';
+import SmsfIntroPage from './components/SmsfIntroPage';
+import SmsfStrategyPage from './components/SmsfStrategyPage';
+import SmsfFormationPage from './components/SmsfFormationPage';
+import SmsfAdministrationPage from './components/SmsfAdministrationPage';
+import HomeLoansPage from './components/HomeLoansPage';
+import CommercialLoansPage from './components/CommercialLoansPage';
+import VehicleEquipmentPage from './components/VehicleEquipmentPage';
+import PersonalLoansPage from './components/PersonalLoansPage';
+import AssetsRevenuePage from './components/AssetsRevenuePage';
+import LiabilityInsurancePage from './components/LiabilityInsurancePage';
+import PersonalWorkersPage from './components/PersonalWorkersPage';
+import BookkeepingSrvPage from './components/BookkeepingSrvPage';
+import PayrollManagementPage from './components/PayrollManagementPage';
+import TrainingSupportPage from './components/TrainingSupportPage';
+import OurHistoryPage from './components/OurHistoryPage';
+import MissionVisionPage from './components/MissionVisionPage';
+import ExpertiseValuesPage from './components/ExpertiseValuesPage';
+import NewslettersPage from './components/NewslettersPage';
+import CalculatorsPage from './components/CalculatorsPage';
+import UsefulLinksPage from './components/UsefulLinksPage';
+import ContactPage from './components/ContactPage';
+import MeetTeamPage from './components/MeetTeamPage';
+import JoinTeamPage from './components/JoinTeamPage';
 import './index.css';
 import './App.css';
 
@@ -195,6 +227,451 @@ const Footer = () => {
 /* ── App ─────────────────────────────────────────────── */
 function App() {
   useScrollReveal();
+  const [page, setPage] = useState(() => {
+    const path = window.location.pathname + window.location.hash;
+    if (path.includes('accounting-compliance')) return 'accounting-compliance';
+    if (path.includes('tax-advisory') || path.includes('#tax')) return 'tax-advisory';
+    if (path.includes('business-consulting') || path.includes('#business')) return 'business-consulting';
+    if (path.includes('smsf')) return 'smsf';
+    if (path.includes('property-investment')) return 'property-investment';
+    if (path.includes('corporate-secretarial')) return 'corporate-secretarial';
+    if (path.includes('wealth-planning') || path.includes('#planning')) return 'wealth-planning';
+    if (path.includes('wealth-protection') || path.includes('#protection')) return 'wealth-protection';
+    if (path.includes('wealth-retirement') || path.includes('#retirement')) return 'wealth-retirement';
+    if (path.includes('smsf-intro')) return 'smsf-intro';
+    if (path.includes('smsf-strategy')) return 'smsf-strategy';
+    if (path.includes('smsf-formation')) return 'smsf-formation';
+    if (path.includes('smsf-admin')) return 'smsf-admin';
+    if (path.includes('home-loans')) return 'home-loans';
+    if (path.includes('commercial-loans')) return 'commercial-loans';
+    if (path.includes('vehicle-equipment')) return 'vehicle-equipment';
+    if (path.includes('personal-loans')) return 'personal-loans';
+    if (path.includes('assets-revenue')) return 'assets-revenue';
+    if (path.includes('liability')) return 'liability';
+    if (path.includes('personal-workers')) return 'personal-workers';
+    if (path.includes('training')) return 'training';
+    if (path.includes('payroll')) return 'payroll';
+    if (path.includes('bookkeeping-srv')) return 'bookkeeping-srv';
+    if (path.includes('expertise')) return 'expertise';
+    if (path.includes('mission')) return 'mission';
+    if (path.includes('history')) return 'history';
+    if (path.includes('newsletters')) return 'newsletters';
+    if (path.includes('calculators')) return 'calculators';
+    if (path.includes('useful-links')) return 'useful-links';
+    if (path.includes('contact')) return 'contact';
+    if (path.includes('meet-team')) return 'meet-team';
+    if (path.includes('join-team')) return 'join-team';
+    return 'home';
+  });
+
+  // Listen for service page navigation clicks anywhere in the app
+  useEffect(() => {
+    const handler = (e) => {
+      const link = e.target.closest('a[href]');
+      if (!link) return;
+      const href = link.getAttribute('href') || '';
+      const text = (link.textContent || '').trim().toLowerCase();
+
+      let targetPage = null;
+
+      if (href.includes('accounting-compliance') || text.includes('accounting & compliance')) {
+        targetPage = 'accounting-compliance';
+      } else if (href.includes('tax-advisory') || href.includes('#tax') || text.includes('tax advis')) {
+        targetPage = 'tax-advisory';
+      } else if (href.includes('business-consulting') || text.includes('business consulting') || text.includes('biz conslt')) {
+        targetPage = 'business-consulting';
+      } else if (href.includes('smsf-intro')) {
+        targetPage = 'smsf-intro';
+      } else if (href.includes('smsf-strategy')) {
+        targetPage = 'smsf-strategy';
+      } else if (href.includes('smsf-formation')) {
+        targetPage = 'smsf-formation';
+      } else if (href.includes('smsf-admin')) {
+        targetPage = 'smsf-admin';
+      } else if (href.includes('home-loans')) {
+        targetPage = 'home-loans';
+      } else if (href.includes('commercial-loans')) {
+        targetPage = 'commercial-loans';
+      } else if (href.includes('vehicle-equipment')) {
+        targetPage = 'vehicle-equipment';
+      } else if (href.includes('personal-loans')) {
+        targetPage = 'personal-loans';
+      } else if (href.includes('assets-revenue')) {
+        targetPage = 'assets-revenue';
+      } else if (href.includes('liability')) {
+        targetPage = 'liability';
+      } else if (href.includes('personal-workers')) {
+        targetPage = 'personal-workers';
+      } else if (href.includes('training')) {
+        targetPage = 'training';
+      } else if (href.includes('payroll')) {
+        targetPage = 'payroll';
+      } else if (href.includes('bookkeeping-srv')) {
+        targetPage = 'bookkeeping-srv';
+      } else if (href.includes('expertise')) {
+        targetPage = 'expertise';
+      } else if (href.includes('mission')) {
+        targetPage = 'mission';
+      } else if (href.includes('history')) {
+        targetPage = 'history';
+      } else if (href.includes('newsletters')) {
+        targetPage = 'newsletters';
+      } else if (href.includes('calculators')) {
+        targetPage = 'calculators';
+      } else if (href.includes('useful-links')) {
+        targetPage = 'useful-links';
+      } else if (href.includes('contact')) {
+        targetPage = 'contact';
+      } else if (href.includes('meet-team')) {
+        targetPage = 'meet-team';
+      } else if (href.includes('join-team')) {
+        targetPage = 'join-team';
+      } else if (href.includes('smsf') || text.includes('self-managed') || text.includes('superannuation fund')) {
+        targetPage = 'smsf';
+      } else if (href.includes('property-investment') || text.includes('property inv')) {
+        targetPage = 'property-investment';
+      } else if (href.includes('corporate-secretarial') || text.includes('corp. sec') || text.includes('corporate sec')) {
+        targetPage = 'corporate-secretarial';
+      } else if (href.includes('wealth-planning') || href === '#planning') {
+        targetPage = 'wealth-planning';
+      } else if (href.includes('wealth-protection') || href === '#protection') {
+        targetPage = 'wealth-protection';
+      } else if (href.includes('wealth-retirement') || href === '#retirement') {
+        targetPage = 'wealth-retirement';
+      }
+
+      if (targetPage) {
+        e.preventDefault();
+        setPage(targetPage);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    };
+    document.addEventListener('click', handler);
+    return () => document.removeEventListener('click', handler);
+  }, []);
+
+  const goHome = () => { setPage('home'); window.scrollTo({ top: 0, behavior: 'smooth' }); };
+
+  if (page === 'accounting-compliance') {
+    return (
+      <div className="app-container">
+        <Navbar />
+        <AccountingCompliancePage onBack={goHome} />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (page === 'tax-advisory') {
+    return (
+      <div className="app-container">
+        <Navbar />
+        <TaxAdvisoryPage onBack={goHome} />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (page === 'business-consulting') {
+    return (
+      <div className="app-container">
+        <Navbar />
+        <BusinessConsultingPage onBack={goHome} />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (page === 'smsf') {
+    return (
+      <div className="app-container">
+        <Navbar />
+        <SMSFPage onBack={goHome} />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (page === 'property-investment') {
+    return (
+      <div className="app-container">
+        <Navbar />
+        <PropertyInvestmentPage onBack={goHome} />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (page === 'corporate-secretarial') {
+    return (
+      <div className="app-container">
+        <Navbar />
+        <CorporateSecretarialPage onBack={goHome} />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (page === 'wealth-planning') {
+    return (
+      <div className="app-container">
+        <Navbar />
+        <WealthPlanningPage onBack={goHome} />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (page === 'wealth-protection') {
+    return (
+      <div className="app-container">
+        <Navbar />
+        <WealthProtectionPage onBack={goHome} />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (page === 'wealth-retirement') {
+    return (
+      <div className="app-container">
+        <Navbar />
+        <WealthRetirementPage onBack={goHome} />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (page === 'smsf-intro') {
+    return (
+      <div className="app-container">
+        <Navbar />
+        <SmsfIntroPage onBack={goHome} />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (page === 'smsf-strategy') {
+    return (
+      <div className="app-container">
+        <Navbar />
+        <SmsfStrategyPage onBack={goHome} />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (page === 'smsf-formation') {
+    return (
+      <div className="app-container">
+        <Navbar />
+        <SmsfFormationPage onBack={goHome} />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (page === 'smsf-admin') {
+    return (
+      <div className="app-container">
+        <Navbar />
+        <SmsfAdministrationPage onBack={goHome} />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (page === 'home-loans') {
+    return (
+      <div className="app-container">
+        <Navbar />
+        <HomeLoansPage onBack={goHome} />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (page === 'commercial-loans') {
+    return (
+      <div className="app-container">
+        <Navbar />
+        <CommercialLoansPage onBack={goHome} />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (page === 'vehicle-equipment') {
+    return (
+      <div className="app-container">
+        <Navbar />
+        <VehicleEquipmentPage onBack={goHome} />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (page === 'personal-loans') {
+    return (
+      <div className="app-container">
+        <Navbar />
+        <PersonalLoansPage onBack={goHome} />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (page === 'assets-revenue') {
+    return (
+      <div className="app-container">
+        <Navbar />
+        <AssetsRevenuePage onBack={goHome} />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (page === 'liability') {
+    return (
+      <div className="app-container">
+        <Navbar />
+        <LiabilityInsurancePage onBack={goHome} />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (page === 'personal-workers') {
+    return (
+      <div className="app-container">
+        <Navbar />
+        <PersonalWorkersPage onBack={goHome} />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (page === 'bookkeeping-srv') {
+    return (
+      <div className="app-container">
+        <Navbar />
+        <BookkeepingSrvPage onBack={goHome} />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (page === 'payroll') {
+    return (
+      <div className="app-container">
+        <Navbar />
+        <PayrollManagementPage onBack={goHome} />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (page === 'training') {
+    return (
+      <div className="app-container">
+        <Navbar />
+        <TrainingSupportPage onBack={goHome} />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (page === 'history') {
+    return (
+      <div className="app-container">
+        <Navbar />
+        <OurHistoryPage onBack={goHome} />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (page === 'mission') {
+    return (
+      <div className="app-container">
+        <Navbar />
+        <MissionVisionPage onBack={goHome} />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (page === 'expertise') {
+    return (
+      <div className="app-container">
+        <Navbar />
+        <ExpertiseValuesPage onBack={goHome} />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (page === 'newsletters') {
+    return (
+      <div className="app-container">
+        <Navbar />
+        <NewslettersPage onBack={goHome} />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (page === 'calculators') {
+    return (
+      <div className="app-container">
+        <Navbar />
+        <CalculatorsPage onBack={goHome} />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (page === 'useful-links') {
+    return (
+      <div className="app-container">
+        <Navbar />
+        <UsefulLinksPage onBack={goHome} />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (page === 'contact') {
+    return (
+      <div className="app-container">
+        <Navbar />
+        <ContactPage onBack={goHome} />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (page === 'meet-team') {
+    return (
+      <div className="app-container">
+        <Navbar />
+        <MeetTeamPage onBack={goHome} />
+        <Footer />
+      </div>
+    );
+  }
+
+  if (page === 'join-team') {
+    return (
+      <div className="app-container">
+        <Navbar />
+        <JoinTeamPage onBack={goHome} />
+        <Footer />
+      </div>
+    );
+  }
+
   return (
     <div className="app-container">
       <Navbar />

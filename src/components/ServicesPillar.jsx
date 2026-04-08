@@ -5,22 +5,52 @@ import { ArrowRight, CheckCircle2, ChevronDown } from 'lucide-react';
 const SERVICES = [
   { id: 0, img: '/Financial-image/accountants.png', title: 'Accountants',   angle: -90, color: '#143c82',
     desc: 'Comprehensive accounting services to keep your business compliant and financially strong.',
-    points: ['Accounting & Compliance', 'Tax Advisory', 'Business Consulting', 'BAS & GST Returns'] },
+    points: [
+      { text: 'Accounting & Compliance', link: '#accounting-compliance' },
+      { text: 'Tax Advisory', link: '#tax-advisory' },
+      { text: 'Business Consulting', link: '#business-consulting' },
+      { text: 'SMSF', link: '#smsf' },
+      { text: 'Property Investment', link: '#property-investment' },
+      { text: 'Corporate Secretarial', link: '#corporate-secretarial' }
+    ] },
   { id: 1, img: '/Financial-image/Finance.png',      title: 'Finance',        angle: -30, color: '#1a4fa0',
     desc: 'Flexible finance solutions for every stage of your journey — personal, commercial, or property.',
-    points: ['Home Loans', 'Commercial Loans', 'Vehicle & Equipment', 'Personal Loans'] },
+    points: [
+      { text: 'Home Loans', link: '#home-loans' },
+      { text: 'Commercial Loans', link: '#commercial-loans' },
+      { text: 'Vehicle & Equipment', link: '#vehicle-equipment' },
+      { text: 'Personal Loans', link: '#personal-loans' }
+    ] },
   { id: 2, img: '/Financial-image/super.png',        title: 'Superannuation', angle: 30,  color: '#0f2f68',
     desc: 'Expert SMSF licensed advice to build and protect your retirement wealth.',
-    points: ['SMSF Introduction', 'SMSF Strategy', 'Fund Formation', 'Administration'] },
+    points: [
+      { text: 'SMSF Intro', link: '#smsf-intro' },
+      { text: 'SMSF Strategy', link: '#smsf-strategy' },
+      { text: 'SMSF Formation', link: '#smsf-formation' },
+      { text: 'SMSF Administration', link: '#smsf-admin' }
+    ] },
   { id: 3, img: '/Financial-image/book.png',         title: 'Bookkeeping',    angle: 90,  color: '#143c82',
     desc: 'Accurate, timely bookkeeping and payroll services powered by MYOB, Xero & QuickBooks.',
-    points: ['Bookkeeping', 'Payroll Management', 'MYOB / Xero Support', 'Training & Support'] },
+    points: [
+      { text: 'Bookkeeping', link: '#bookkeeping-srv' },
+      { text: 'Payroll Management', link: '#payroll' },
+      { text: 'Training & Support', link: '#training' }
+    ] },
   { id: 4, img: '/Financial-image/wealth.png',       title: 'Wealth',         angle: 150, color: '#1a4fa0',
     desc: 'Tailored wealth strategies to grow, protect, and transition your personal financial future.',
-    points: ['Wealth Planning', 'Asset Protection', 'Retirement Planning', 'Investment Strategy'] },
+    points: [
+      { text: 'Wealth Planning', link: '#wealth-planning' },
+      { text: 'Wealth Protection', link: '#wealth-protection' },
+      { text: 'Wealth Retirement', link: '#wealth-retirement' },
+      { text: 'Investment Strategy', link: '#wealth-retirement' }
+    ] },
   { id: 5, img: '/Financial-image/insurance.png',    title: 'Insurance',      angle: 210, color: '#0f2f68',
     desc: 'Protect what matters most — your business, assets, income and people.',
-    points: ['Assets & Revenue', 'Liability Cover', 'Personal Insurance', 'Workers Compensation'] },
+    points: [
+      { text: 'Assets & Revenue', link: '#assets-revenue' },
+      { text: 'Liability Cover', link: '#liability' },
+      { text: 'Personal & Workers', link: '#personal-workers' }
+    ] },
 ];
 
 const RADIUS = 220;
@@ -499,23 +529,40 @@ const ServicesPillar = () => {
 
                 {/* Points */}
                 <ul style={{ display:'flex', flexDirection:'column', gap:14, marginBottom:40 }}>
-                  {activeService.points.map((pt, pi) => (
-                    <li key={pt} style={{
-                      display:'flex', alignItems:'center', gap:14,
-                      animation:'pointIn 0.45s ease both',
-                      animationDelay:`${0.12 + pi * 0.07}s`,
-                    }}>
-                      <div style={{
-                        width:32, height:32, borderRadius:'50%',
-                        background:'rgba(20,60,130,0.08)',
-                        border:'1.5px solid rgba(20,60,130,0.25)',
-                        display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0,
+                  {activeService.points.map((pt, pi) => {
+                    const label = typeof pt === 'string' ? pt : pt.text;
+                    const href  = typeof pt === 'object' && pt.link ? pt.link : null;
+                    return (
+                      <li key={label} style={{
+                        display:'flex', alignItems:'center', gap:14,
+                        animation:'pointIn 0.45s ease both',
+                        animationDelay:`${0.12 + pi * 0.07}s`,
                       }}>
-                        <CheckCircle2 size={15} style={{ color:'#143c82' }} />
-                      </div>
-                      <span style={{ fontSize:14.5, color:'#464650', fontWeight:500 }}>{pt}</span>
-                    </li>
-                  ))}
+                        <div style={{
+                          width:32, height:32, borderRadius:'50%',
+                          background:'rgba(20,60,130,0.08)',
+                          border:'1.5px solid rgba(20,60,130,0.25)',
+                          display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0,
+                        }}>
+                          <CheckCircle2 size={15} style={{ color:'#143c82' }} />
+                        </div>
+                        {href ? (
+                          <a href={href} style={{
+                            fontSize:14.5, color:'#143c82', fontWeight:700,
+                            textDecoration:'underline', textUnderlineOffset:3,
+                            display:'flex', alignItems:'center', gap:6, transition:'color 0.2s',
+                          }}
+                            onMouseEnter={e => e.currentTarget.style.color = '#0f2f68'}
+                            onMouseLeave={e => e.currentTarget.style.color = '#143c82'}
+                          >
+                            {label} <ArrowRight size={13} />
+                          </a>
+                        ) : (
+                          <span style={{ fontSize:14.5, color:'#464650', fontWeight:500 }}>{label}</span>
+                        )}
+                      </li>
+                    );
+                  })}
                 </ul>
 
                 <a href="#contact" className="btn-red" style={{

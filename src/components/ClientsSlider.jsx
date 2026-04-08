@@ -1,12 +1,11 @@
 import React from 'react';
 
 const logos = [
-  { src: '/logos/client1.jpg', alt: 'IPA – Institute of Public Accountants' },
   { src: '/logos/client2.jpg', alt: 'Tax Practitioners Board Registered' },
   { src: '/logos/client3.jpg', alt: 'SMSF Advisers Network' },
-  { src: '/logos/client4.jpg', alt: 'NTAA – National Tax & Accountants Association' },
-  { src: '/logos/client5.jpg', alt: 'MYOB' },
+  { src: '/logos/client1.jpg', alt: 'IPA – Institute of Public Accountants' },
   { src: '/logos/client6.jpg', alt: 'Xero' },
+  { src: '/logos/client5.jpg', alt: 'MYOB' },
 ];
 
 /* Triple for seamless infinite loop */

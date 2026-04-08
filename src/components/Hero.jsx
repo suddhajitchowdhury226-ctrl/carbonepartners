@@ -12,7 +12,7 @@ const slides = [
     image: '/hero2.jpg',
     label: 'Perth, Western Australia',
     heading: <>Your Strategic<br /><span style={{ color: '#143c82' }}>Financial Partner</span><br />in Perth</>,
-    sub: 'Serving Perth businesses and families across building & construction, retail, manufacturing, and professional services for over 15 years.',
+    sub: 'Serving Perth businesses and families across building & construction, retail, manufacturing, and professional services for over 25+ years.',
   },
   {
     image: '/hero3.jpg',
@@ -154,7 +154,7 @@ const Hero = () => {
           transition: 'all 0.6s ease 0.25s',
         }}>
           <a href="#contact" className="btn-red" style={{ fontSize: 12, letterSpacing: 1.5 }}>
-            Book Free Consult
+            Book Consultation
             <ArrowRight size={15} />
           </a>
           <a href="#services" className="btn-outline-white" style={{ fontSize: 12, letterSpacing: 1.5 }}>
@@ -174,11 +174,22 @@ const Hero = () => {
           opacity: animating ? 0 : 1,
           transition: 'opacity 0.6s ease 0.3s',
         }}>
-          {['IPA Practice', 'SMSF Licensed', 'XERO Certified', 'MYOB Partner'].map(tag => (
-            <div key={tag} style={{
-              fontSize: 10, fontWeight: 700, letterSpacing: 1.5,
-              textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)',
-            }}>{tag}</div>
+          {[
+            { name: 'IPA Practice', desc: 'Accredited member of the Institute of Public Accountants' },
+            { name: 'SMSF Licensed', desc: 'Licensed advisors for self-managed super funds' },
+            { name: 'XERO Certified', desc: 'Certified Xero advisors & cloud accounting experts' },
+            { name: 'MYOB Partner', desc: 'Authorised MYOB implementation & support partners' },
+          ].map(({ name, desc }) => (
+            <div key={name} style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+              <div style={{
+                fontSize: 10, fontWeight: 700, letterSpacing: 1.5,
+                textTransform: 'uppercase', color: 'rgba(255,255,255,0.55)',
+              }}>{name}</div>
+              <div style={{
+                fontSize: 10, fontWeight: 400, color: 'rgba(255,255,255,0.3)',
+                maxWidth: 130, lineHeight: 1.5, letterSpacing: 0.3,
+              }}>{desc}</div>
+            </div>
           ))}
         </div>
       </div>

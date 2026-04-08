@@ -4,7 +4,7 @@ const stats = [
   { num: 25,  suffix: '+', label: 'Years of\nExperience',       duration: 1800 },
   { num: 500, suffix: '+', label: 'Satisfied\nClients',         duration: 2200 },
   { num: 6,   suffix: '',  label: 'Service\nPillars',           duration: 900  },
-  { num: 15,  suffix: '+', label: 'Avg. Client\nRelationship',  duration: 1600 },
+  { num: 25,  suffix: '+', label: 'Avg. Client\nRelationship',  duration: 1600 },
 ];
 
 /* ── Easing: ease-out quad ── */

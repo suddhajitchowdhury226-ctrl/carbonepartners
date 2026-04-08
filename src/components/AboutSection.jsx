@@ -102,7 +102,7 @@ const AboutSection = () => {
               gap: 24, marginTop: 8,
             }}>
               {[
-                { end: 15, suffix: '+', label: 'Years in Business' },
+                { end: 25, suffix: '+', label: 'Years in Business' },
                 { end: 500, suffix: '+', label: 'Satisfied Clients' },
                 { end: 6, suffix: '', label: 'Service Pillars' },
                 { end: 100, suffix: '%', label: 'Client Focused' },
@@ -140,7 +140,7 @@ const AboutSection = () => {
               marginBottom: 36,
               fontWeight: 400,
             }}>
-              With clients spanning over 15 years and industries including building & construction, retail, wholesale, manufacturing, and professional services — we are your long-term financial partner.
+              With clients spanning over 25+ years and industries including building & construction, retail, wholesale, manufacturing, and professional services — we are your long-term financial partner.
             </p>
 
             <div style={{ marginBottom: 8 }}>
